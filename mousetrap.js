@@ -190,11 +190,13 @@
      * @returns void
      */
     function _removeEvent (object, type, callback) {
-        if (object.removeEventListener) {
-            object.removeEventListener(type, callback, false);
-            return;
+        if (object) {
+            if (object.removeEventListener) {
+                object.removeEventListener(type, callback, false);
+                return;
+            }
+            object.detachEvent('on' + type, callback);
         }
-        object.detachEvent('on' + type, callback);
     }
 
     /**
